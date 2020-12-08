@@ -11,7 +11,7 @@ class GetUserItemsTest extends TestCase {
      */
     private $instance;
 
-    public function setUp() {
+    public function setUp(): void {
         $this->instance = new GetUserItems("76561198012598620", 2000, true,
             false);
     }

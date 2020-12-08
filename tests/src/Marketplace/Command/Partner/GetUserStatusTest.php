@@ -11,7 +11,7 @@ class GetUserStatusTest extends TestCase {
      */
     private $instance;
 
-    public function setUp() {
+    public function setUp(): void {
         $this->instance = new GetUserStatus("76561198012598620");
     }
 

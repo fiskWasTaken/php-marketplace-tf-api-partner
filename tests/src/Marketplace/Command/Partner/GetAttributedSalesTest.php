@@ -11,7 +11,7 @@ class GetAttributedSalesTest extends TestCase {
      */
     private $instance;
 
-    public function setUp() {
+    public function setUp(): void {
         $this->instance = new GetAttributedSales(150);
     }
 
