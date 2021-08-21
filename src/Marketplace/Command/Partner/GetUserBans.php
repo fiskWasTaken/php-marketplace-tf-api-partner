@@ -36,7 +36,7 @@ class GetUserBans implements CommandInterface {
 
     public function getParams(): array {
         return [
-            'steamid' => $this->steamid
+            'steamids' => $this->steamid
         ];
     }
 }
