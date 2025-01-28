@@ -13,16 +13,39 @@ use Marketplace\Command\CommandInterface;
 
 class GetUserItems implements CommandInterface {
     private $steamid;
-    private $limit;
-    private $images;
-    private $unpriced;
+    private $count;
+    private $offset;
+    private $images = false;
+    private $unpriced = false;
 
-    public function __construct(string $steamid, int $limit, bool $images,
-                                bool $unpriced) {
+    public function __construct(string $steamid, int $count = 20000, int $offset = 0) {
         $this->steamid = $steamid;
-        $this->limit = $limit;
-        $this->images = $images;
+        $this->count = $count;
+        $this->offset = $offset;
+    }
+
+    public function withUnpriced(bool $unpriced = true)
+    {
         $this->unpriced = $unpriced;
+        return $this;
+    }
+
+    public function withImages(bool $images = true)
+    {
+        $this->images = $images;
+        return $this;
+    }
+
+    public function withCount(int $count)
+    {
+        $this->count = $count;
+        return $this;
+    }
+
+    public function withOffset(int $offset)
+    {
+        $this->offset = $offset;
+        return $this;
     }
 
     public function getRequestMethod(): string {
@@ -38,13 +61,14 @@ class GetUserItems implements CommandInterface {
     }
 
     public function getVersion(): string {
-        return 'v1';
+        return 'v3';
     }
 
     public function getParams(): array {
         return [
             'steamid' => $this->steamid,
-            'limit' => $this->limit,
+            'count' => $this->count,
+            'offset' => $this->offset,
             'images' => $this->images,
             'unpriced' => $this->unpriced
         ];
